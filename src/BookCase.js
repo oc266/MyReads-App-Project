@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Book from './Book.js'
 import BookShelf from './BookShelf.js'
 
 class BookCase extends Component {
@@ -8,9 +7,20 @@ class BookCase extends Component {
   render() {
     const { books } = this.props
 
-    let currentlyReading = books.filter((book) => book.shelf === 'currentlyReading')
-    let wantToRead = books.filter((book) => book.shelf === 'wantToRead')
-    let haveRead = books.filter((book) => book.shelf === 'read')
+    let categorizedBooks = [
+      {
+        shelf: 'Currently Reading',
+        booksOnShelf: books.filter((book) => book.shelf === 'currentlyReading')
+      },
+      {
+        shelf: 'Want To Read',
+        booksOnShelf: books.filter((book) => book.shelf === 'wantToRead')
+      },
+      {
+        shelf: 'Read',
+        booksOnShelf: books.filter((book) => book.shelf === 'read')
+      }
+    ]
 
     return (
       <div className="list-books">
@@ -19,18 +29,12 @@ class BookCase extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <BookShelf
-              books = {currentlyReading}
-              shelfName = 'Currently Reading'
-            />
-            <BookShelf
-              books = {wantToRead}
-              shelfName = 'Want To Read'
-            />
-            <BookShelf
-              books = {haveRead}
-              shelfName = 'Read'
-            />
+            {categorizedBooks.map((category) => (
+              <BookShelf
+                key = {category.shelf}
+                books = {category}
+              />
+            ))}
           </div>
         </div>
         <div className="open-search">
