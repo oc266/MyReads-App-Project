@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book.js'
+import BookShelf from './BookShelf.js'
 
 class BookCase extends Component {
 
@@ -18,48 +19,18 @@ class BookCase extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Currently Reading</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {currentlyReading.map((book) => (
-                    <li key={book.id}>
-                      <Book
-                        book = {book}
-                      />
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {wantToRead.map((book) => (
-                    <li key={book.id}>
-                      <Book
-                        book = {book}
-                      />
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                  {haveRead.map((book) => (
-                    <li key={book.id}>
-                      <Book
-                        book = {book}
-                      />
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div>
+            <BookShelf
+              books = {currentlyReading}
+              shelfName = 'Currently Reading'
+            />
+            <BookShelf
+              books = {wantToRead}
+              shelfName = 'Want To Read'
+            />
+            <BookShelf
+              books = {haveRead}
+              shelfName = 'Read'
+            />
           </div>
         </div>
         <div className="open-search">
