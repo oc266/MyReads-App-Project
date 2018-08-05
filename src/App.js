@@ -2,7 +2,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import BookCase from './BookCase.js'
 import BookSearch from './BookSearch'
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -10,11 +10,12 @@ class BooksApp extends React.Component {
     books: []
   }
 
-  // componentDidMount() {
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({ books })
-  //   })
-  // }
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+      console.log(books);
+    })
+  }
 
   render() {
     return (
@@ -23,7 +24,9 @@ class BooksApp extends React.Component {
           <BookSearch/>
         )}/>
         <Route exact path = '/' render = {() => (
-          <BookCase/>
+          <BookCase
+            books={this.state.books}
+          />
         )}/>
       </div>
     )
