@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Book from './Book'
-import * as BooksAPI from './BooksAPI'
 
 class BookSearch extends Component {
 
@@ -36,14 +35,14 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {booksInSearch !== undefined &&
+            {booksInSearch !== undefined ?
               booksInSearch.map((book) => (
                 <li key={book.id}>
                   <Book
                     book = {book}
                   />
                 </li>
-              ))
+              )) : ''
             }
           </ol>
         </div>
