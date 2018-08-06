@@ -7,10 +7,6 @@ class BookSearch extends Component {
   render() {
     const { query, booksInSearch, onUpdateQuery } = this.props
 
-    console.log(booksInSearch)
-    let thumbnails = (booksInSearch.map((book) => book.imageLinks))
-    console.log(thumbnails)
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -40,6 +36,7 @@ class BookSearch extends Component {
                 <li key={book.id}>
                   <Book
                     book = {book}
+                    onChangeShelf = {(book, shelf) => this.props.onUpdateShelf(book, shelf)}
                   />
                 </li>
               )) : ''

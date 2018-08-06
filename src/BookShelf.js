@@ -11,6 +11,7 @@ function BookShelf (props) {
             <li key={book.id}>
               <Book
                 book = {book}
+                onChangeShelf = {(book, shelf) => props.onUpdateShelf(book, shelf)}
               />
             </li>
           ))}

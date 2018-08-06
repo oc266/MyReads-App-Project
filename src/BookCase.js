@@ -33,6 +33,7 @@ class BookCase extends Component {
               <BookShelf
                 key = {category.shelf}
                 books = {category}
+                onUpdateShelf = {(book, shelf) => this.props.onUpdateShelf(book, shelf)}
               />
             ))}
           </div>

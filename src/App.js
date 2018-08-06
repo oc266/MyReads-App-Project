@@ -18,6 +18,34 @@ class BooksApp extends React.Component {
     })
   }
 
+  updateShelf = (book, shelf) => {
+    // Make change happen immediately on page, so we do not need
+    // to wait for the server to be updated and then for the
+    // BooksAPI to get all the books currently on a shelf from
+    // the server.
+    // The idea of using .findIndex was adapted from the tech
+    // webinar organised by udacity for this project
+    let books = []
+    // If the book we are updating the shelf for is already on
+    // the bookcase then we just need to update the value of the
+    // shelf for this book and keep all other books in
+    // this.state.books as they are
+    if (this.state.books.findIndex(bookInBookcase => bookInBookcase.id === book.id) > 0) {
+      book.shelf = shelf
+      books = this.state.books
+    } else {
+      book.shelf = shelf
+      books = this.state.books.push(book)
+    }
+    this.setState({ books })
+    BooksAPI.update(book, shelf).then((done) => {
+
+    })
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
+
   updateQuery = (query) => {
     this.setState({ query: query })
     let booksInSearch = []
@@ -30,6 +58,8 @@ class BooksApp extends React.Component {
             // we need to add the book from the bookcase to the
             // array booksInSearch so that the shelf information
             // is present.
+            // The idea of using .findIndex was adapted from the
+            // tech webinar organised by udacity for this project
             const index = this.state.books.findIndex(bookInBookcase =>
               bookInBookcase.id === bookFromSearch.id)
             if (index >= 0) {
@@ -54,11 +84,13 @@ class BooksApp extends React.Component {
             books={this.state.books}
             booksInSearch={this.state.booksInSearch}
             onUpdateQuery={this.updateQuery}
+            onUpdateShelf = {(book, shelf) => this.updateShelf(book, shelf)}
           />
         )}/>
         <Route exact path = '/' render = {() => (
           <BookCase
             books={this.state.books}
+            onUpdateShelf = {(book, shelf) => this.updateShelf(book, shelf)}
           />
         )}/>
       </div>
