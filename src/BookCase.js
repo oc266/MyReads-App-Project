@@ -4,9 +4,12 @@ import BookShelf from './BookShelf.js'
 
 class BookCase extends Component {
 
+  // Renders the book case, showing each book on its specified shelf
   render() {
     const { books } = this.props
 
+    {/* An array containing three objects, one for each of the shelves.
+    Each object holds an array of books for that shelf. */}
     let categorizedBooks = [
       {
         shelf: 'Currently Reading',

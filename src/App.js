@@ -20,6 +20,10 @@ class BooksApp extends React.Component {
     })
   }
 
+  // A function which is called when a books is moved to a shelf
+  // or betweem shelves. This will be passed as a prop to the book
+  // component and the book component is the only place that will
+  // call this function
   updateShelf = (book, shelf) => {
     // Make change happen immediately on page, so we do not need
     // to wait for the server to be updated and then for the
@@ -50,6 +54,10 @@ class BooksApp extends React.Component {
     })
   }
 
+  // A function which is called when a user is doing a search in the
+  // search page of the app - this is called each time the user
+  // updates the search field. Because of it's usage it needs to
+  // be passed as a prop to the BookSearch component
   updateQuery = (query) => {
     this.setState({ query: query })
     let booksInSearch = []
@@ -80,6 +88,7 @@ class BooksApp extends React.Component {
     }
   }
 
+  // Render the page, includes routing information
   render() {
     return (
       <div className="app">

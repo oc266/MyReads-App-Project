@@ -12,14 +12,11 @@ class BookSearch extends Component {
         <div className="search-books-bar">
           <Link className="close-search" to='/'>Close</Link>
           <div className="search-books-input-wrapper">
-            {/*
-              NOTES: The search from BooksAPI is limited to a particular set of search terms.
-              You can find these search terms here:
-              https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-              However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-              you don't find a specific author or title. Every search is limited by search terms.
-            */}
+            {/* Input field for the search - each time the user changes the
+            input to this, the function updateQuery in the App.js
+            component is called and the books returned by the search
+            are updated. The page is then re-rendered to display any
+            books that have been found by the search. */}
             <input
               type="text"
               placeholder="Search by title or author"
@@ -31,7 +28,9 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {booksInSearch !== undefined ?
+            {// If the user's search returns books, then display these on
+            // the page
+            booksInSearch !== undefined ?
               booksInSearch.map((book) => (
                 <li key={book.id}>
                   <Book

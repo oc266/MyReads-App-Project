@@ -5,17 +5,23 @@ class Book extends Component {
     shelf: 'none'
   }
 
+  // On the book component mounting, set the shelf and render so that
+  // this information is contained in the shelf selecter on the page
   componentDidMount() {
     if (this.props.book.shelf) {
       this.setState({ shelf: this.props.book.shelf })
     }
   }
 
+  // A function to be called when the user changes the shelf for
+  // any instance of a book
   changeShelf = (newShelf) => {
     this.setState({ shelf: newShelf.target.value })
     this.props.onChangeShelf(this.props.book, newShelf.target.value)
   }
 
+  // Renders an individual book, either on a book shelf or in a book
+  // search
   render() {
     const { book } = this.props
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import Book from './Book.js'
 
+// Renders an individual shelf - the book data which is on the shelf
+// is passed to it in an object called books
 function BookShelf (props) {
   return (
     <div className="bookshelf">
